@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <script type="text/javascript" src="{% static 'js/vue.js' %}"></script>
+  <title>Register|Dayoff</title>
+  <style>
+    .errorlist {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="registerapp">
+    <div class="container">
+      <div class="row justify-content-center" style="padding-top: 1em;">
+        <div class="col-md-6 align-self-center">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" style="text-align: center;">[[ message ]]</h5>
+              <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="firstname">Firstname</label>
+                  <input type="text" class="form-control" name="firstname" placeholder="Enter Firstname">
+                  {{ user_form.firstname.errors }}
+                  <br>
+                  <label for="lastname">Lastname</label>
+                  <input type="text" class="form-control" name="lastname" placeholder="Enter Lastname">
+                  {{ user_form.lastname.errors }}
+                  <br>
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" name="email" placeholder="Enter Email">
+                  {{ user_form.email.errors }}
+                  <br>
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" name="username" placeholder="Enter Username">
+                  {{ user_form.username.errors }}
+                  <br>
+                  <label for="password1">Password</label>
+                  <input type="password" class="form-control" name="password1" placeholder="Enter Password">
+                  {{ user_form.password1.errors }}
+                  <br>
+                  <label for="password2">Confirm Password</label>
+                  <input type="password" class="form-control" name="password2" placeholder="Confirm Password">
+                  {{ user_form.password2.errors }}
+                  <br>
+                  <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">[[ message ]]</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  var app = new Vue({
+    el: '#registerapp',
+    delimiters: ['[[', ']]'],
+    data(){
+      return {
+          message: 'Register'
+      }
+    }
+  })
+</script>
+</html>
